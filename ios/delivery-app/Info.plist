@@ -1,0 +1,10 @@
+<key>NSCameraUsageDescription</key>
+<string>We need access to your camera to allow you to scan QR codes and capture photos within the app.</string>
+
+<!-- Include this only if you are planning to use the camera roll -->
+<key>NSPhotoLibraryUsageDescription</key>
+<string>We need access to your photo library to allow you to select photos for upload and profile customization.</string>
+
+<!-- Include this only if you are planning to use the microphone for video recording -->
+<key>NSMicrophoneUsageDescription</key>
+<string>We need access to your microphone for video recording features within the app, enabling you to record and share videos.</string>
