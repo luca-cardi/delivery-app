@@ -27,6 +27,7 @@ export const QrScanner = ({ onScan }: any) => {
   }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    onScan(data);
   };
 
   if (hasPermission === null) {
@@ -63,14 +64,12 @@ export const QrScanner = ({ onScan }: any) => {
 };
 
 const overlayWidth = (width - scannerSquareSize) / 2;
-const overlayHeight = (height  - scannerSquareSize  )  /2 ;
-const backgroundColor = "rgba(0,0,0,0.4)"
-console.log(height)
+const overlayHeight = (height - scannerSquareSize) / 2;
+const backgroundColor = "rgba(0,0,0,0.4)";
 
 const styles = StyleSheet.create({
   scannerContainer: {
     flex: 1,
-    
   },
   overlayTop: {
     position: "absolute",
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor,
     top: overlayHeight + scannerSquareSize - 2,
-    height: overlayHeight ,
+    height: overlayHeight,
     left: 0,
     right: 0,
   },
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor,
     height: scannerSquareSize - 2,
-    top: overlayHeight  ,
+    top: overlayHeight,
     bottom: overlayHeight,
     left: 0,
     width: overlayWidth,
@@ -113,8 +112,8 @@ const styles = StyleSheet.create({
     left: overlayWidth,
     top: overlayHeight,
     bottom: overlayHeight,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   scannerBorder: {
     borderWidth: 2,
@@ -124,11 +123,11 @@ const styles = StyleSheet.create({
     height: scannerSquareSize,
   },
   bottomText: {
-    position: 'absolute',
-    width: '100%', // Make the text container full width
-    textAlign: 'center', // Center text within the container
+    position: "absolute",
+    width: "100%",
+    textAlign: "center",
     fontSize: 20,
     color: "white",
-    bottom: 80, // Position 50 pixels up from the bottom
+    bottom: 80,
   },
 });

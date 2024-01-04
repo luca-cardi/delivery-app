@@ -12,10 +12,10 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Homepage } from "./components/Homepage";
-import QRCodeScanner from "react-native-qrcode-scanner";
 import { QrScanner } from "./components/QrScanner";
 import { Shipments } from "./components/Shipments";
+import axios from "axios";
+import { API_TOKEN } from '@env';
 
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -51,10 +51,11 @@ function RootLayoutNav() {
 
   const handleScan = async (scannedToken: any) => {
     // Save token to AsyncStorage and state
-    console.log(scannedToken.data, 'here')
+    console.log(scannedToken, 'here')
 /*     await AsyncStorage.setItem("userToken", scannedToken);
     setToken(scannedToken); */
   };
+  axios.defaults.headers.common['Authorization'] = API_TOKEN;
 
   const colorScheme = useColorScheme();
 
@@ -62,7 +63,7 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <NavigationContainer>
         <Stack.Navigator>
-          {!token ? (
+          {token ? (
             // Show QR Scanner Page if no token
             <Stack.Screen name="QRScanner"   options={{ headerTitle: 'Scan QR Code' }}>
               {(props) => <QrScanner {...props} onScan={handleScan} />}
@@ -70,8 +71,7 @@ function RootLayoutNav() {
           ) : (
             // Show Home Page and Shipments Page if token exists
             <>
-              <Stack.Screen name="Home" component={Homepage} />
-              <Stack.Screen name="Shipments" component={Shipments} />
+              <Stack.Screen name="Delivery" component={Shipments} />
             </>
           )}
         </Stack.Navigator>
